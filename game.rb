@@ -1,7 +1,9 @@
 require_relative 'board'
 require_relative 'player'
+
+# This class controls the game state and flow for Tic Tac Toe.
 class Game
-  #attr_accessor :board
+  # attr_accessor :board
   def initialize
     @player_x = Player.new('x')
     @player_o = Player.new('o')
@@ -60,13 +62,12 @@ class Game
       @turn = 'O'
       @moves += 1
       @game_over = game_over?
-      if @game_over == true
-        break
-      end
+      break if @game_over == true
+
       puts "It is currently #{@turn}'s turn.\n\n"
       until o_moved == true
-         @board.print_board
-         move_target = @player_o.move
+        @board.print_board
+        move_target = @player_o.move
         o_moved = @board.try_move?(move_target, 'O')
       end
       @turn = 'X'
@@ -83,12 +84,12 @@ class Game
     end
     @rounds_played += 1
     puts "You have played #{@rounds_played} rounds so far.\n\n"
-    puts "Would you like to play again? [Y/N]"
+    puts 'Would you like to play again? [Y/N]'
     response = gets.chomp
     if %w[y yes].include?(response.downcase)
       new_game
     else
-      puts "Bye now, thanks for playing"
+      puts 'Bye now, thanks for playing'
     end
   end
 end
