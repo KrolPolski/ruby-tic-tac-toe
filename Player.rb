@@ -19,8 +19,8 @@
       
     end
     def move
-      valid_move = false
-      until valid_move == true
+      valid_move_format = false
+      until valid_move_format == true
         puts "Choose the row for your move: [0, 1, or 2]:"
         row = gets.chomp
         begin
@@ -45,6 +45,8 @@
           puts "Invalid entry. Please select 0, 1, or 2"
           next
         end
+        valid_move_format = true
       end
+      return [row_int, col_int]
     end
   end
